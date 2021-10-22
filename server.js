@@ -1,3 +1,4 @@
+var open = require('open');
 // Listen on a specific host via the HOST environment variable
 var host = process.env.HOST || '0.0.0.0';
 // Listen on a specific port via the PORT environment variable
@@ -44,6 +45,7 @@ cors_proxy.createServer({
     // Do not add X-Forwarded-For, etc. headers, because Heroku already adds it.
     xfwd: false,
   },
-}).listen(port, host, function() {
-  console.log('Running CORS Anywhere on ' + host + ':' + port);
+}).listen(port, host, function () {
+  console.log('listening on ' + port + ':' + host);
+  open('http://127.0.0.1:8080', { app: 'chrome' });
 });
